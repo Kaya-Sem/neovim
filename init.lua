@@ -185,18 +185,40 @@ require('lazy').setup({
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    config = function() -- This is the function that runs, AFTER loading
+    event = 'VimEnter',
+    config = function()
       require('which-key').setup()
 
       -- Document existing key chains
       require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
+        ['<leader>c'] = { 
+          name = '[C]ode', 
+          b = {':Gitsigns blame_line<CR>', '[B]lame line'},
+        },
+
         ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>t'] = { name = '[T]oggle', _ = 'which_key_ignore' },
+        ['<leader>u'] = { 
+          name = '[U] UI',
+          l = { ':colorscheme catppuccin-latte<CR>', '[L]ightmode'},
+          d = { ':colorscheme catppuccin-mocha<CR>', '[D]darkmode'},
+        },
+
+        ['<leader>t'] = {
+        name = '[T]oggle',
+        t = { ':setlocal spell!<CR>', '[T]oggle spelling' },
+        n = { ':setlocal number!<CR>', '[T]oggle line numbers' },
+        r = { ':setlocal relativenumber!<CR>', '[T]oggle relative line numbers' },
+        w = { ':setlocal wrap!<CR>', '[T]oggle wrap' },
+        s = { ':setlocal spell!<CR>', '[T]oggle spell check' },
+        l = { ':setlocal list!<CR>', '[T]oggle list characters' },
+        c = { ':setlocal cursorline!<CR>', '[T]oggle cursor line' },
+        f = { ':Telescope find_files<CR>', '[T]oggle find files' }, -- assuming you're using Telescope
+        g = { ':Telescope live_grep<CR>', '[T]oggle live grep' }, -- assuming you're using Telescope
+        b = { ':Gitsigns toggle_current_line_blame<CR>', '[T]oggle line blame' }, -- assuming you're using Telescope
+    },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
       }
       -- visual mode
@@ -645,11 +667,13 @@ require('lazy').setup({
     end,
   },
 
+
+  -- colorscheme
   {
     "catppuccin/nvim",
     priority = 1000, 
     init = function()
-      vim.cmd.colorscheme 'catppuccin-latte'
+      vim.cmd.colorscheme 'catppuccin-mocha'
     end,
   },
 
@@ -727,16 +751,8 @@ require('lazy').setup({
     end,
   },
 
-  -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  -- place them in the correct locations.
-
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.lint',
-
-
    {
-    import = 'custom.plugins' 
+    import = 'plugins'
   },
 }, 
 
