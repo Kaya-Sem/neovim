@@ -209,13 +209,9 @@ require('lazy').setup({
         ['<leader>t'] = {
         name = '[T]oggle',
         t = { ':setlocal spell!<CR>', '[T]oggle spelling' },
-        n = { ':setlocal number!<CR>', '[T]oggle line numbers' },
-        r = { ':setlocal relativenumber!<CR>', '[T]oggle relative line numbers' },
         w = { ':setlocal wrap!<CR>', '[T]oggle wrap' },
         s = { ':setlocal spell!<CR>', '[T]oggle spell check' },
-        l = { ':setlocal list!<CR>', '[T]oggle list characters' },
         c = { ':setlocal cursorline!<CR>', '[T]oggle cursor line' },
-        f = { ':Telescope find_files<CR>', '[T]oggle find files' }, -- assuming you're using Telescope
         g = { ':Telescope live_grep<CR>', '[T]oggle live grep' }, -- assuming you're using Telescope
         b = { ':Gitsigns toggle_current_line_blame<CR>', '[T]oggle line blame' }, -- assuming you're using Telescope
     },
