@@ -6,7 +6,6 @@ vim.g.have_nerd_font = true
 
 vim.o.conceallevel = 2
 
-
 -- disable relative lines in command mode
 vim.api.nvim_create_autocmd({ "CmdlineEnter", "WinLeave" }, {
   group = vim.api.nvim_create_augroup("cmd-line-relnum-toggle-on", { clear = true }),
