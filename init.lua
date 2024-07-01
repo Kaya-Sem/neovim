@@ -73,6 +73,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
     'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+
     -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim', opts = {} },
 
@@ -161,7 +162,6 @@ require('lazy').setup({
         },
         { 'nvim-telescope/telescope-ui-select.nvim' },
 
-        -- Useful for getting pretty icons, but requires a Nerd Font.
         { 'nvim-tree/nvim-web-devicons',            enabled = vim.g.have_nerd_font },
       },
       config = function()
@@ -630,6 +630,8 @@ require('lazy').setup({
       import = 'plugins'
     },
   },
+
+
 
   {
     ui = {
