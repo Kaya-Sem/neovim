@@ -629,13 +629,20 @@ require('lazy').setup({
     end,
   },
 
-  -- PERF: 
-  -- FIX: 
-  -- WARNING: 
+  -- PERF:
+  -- fdsfd
+  -- and this is not OK obviously
+
+
+
+
+  -- HACK: if else boom Noah style
+  -- TEST:
+  -- FIX: issue!
+  -- WARNING:
   -- TODO:
   -- NOTE:
-  --
-
+  -- SMELLY: 
 
   -- Highlight todo, note, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
