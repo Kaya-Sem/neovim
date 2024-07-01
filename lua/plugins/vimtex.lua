@@ -11,7 +11,7 @@ return {
         callback = function(event)
           local wk = require("which-key")
           local opts = {
-            mode = "n", -- NORMAL mode
+            mode = "n",         -- NORMAL mode
             buffer = event.buf, -- Specify a buffer number for buffer local mappings to show only in tex buffers
           }
           local mappings = {
@@ -105,6 +105,6 @@ return {
         end,
       })
     end,
-  },
+  }
 
 }
