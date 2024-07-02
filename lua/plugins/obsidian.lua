@@ -3,7 +3,7 @@ return {
   version = "*",
   lazy = true,
   ft = "markdown",
-  
+
   dependencies = {
     "nvim-lua/plenary.nvim",
 
@@ -12,7 +12,8 @@ return {
     workspaces = {
       {
         name = "personal",
-        path = "~/Documents/Data/",},
+        path = "~/Data",
+      },
     },
   },
 }
