@@ -22,6 +22,13 @@ vim.opt.inccommand = 'split' -- substitution live preview
 vim.opt.hlsearch = true
 vim.opt.scrolloff = 10
 
+
+vim.opt_local.linebreak = true
+vim.opt_local.breakindent = true
+vim.opt_local.textwidth = 10
+vim.opt_local.wrap = true
+
+
 require('keymaps')
 require('autocommands')
 
@@ -37,6 +44,18 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- Add this at the end of your configuration file or in a relevant section
+
+-- Set textwidth to 80 for Markdown files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.textwidth = 50
+    vim.opt_local.wrap = true
+  end,
+})
+
 
 -- Lazyvim plugin manager
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
