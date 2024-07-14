@@ -389,14 +389,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    "catppuccin/nvim",
-    priority = 1000,
-    init = function()
-      vim.cmd.colorscheme 'catppuccin-mocha'
-    end,
-  },
-
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',

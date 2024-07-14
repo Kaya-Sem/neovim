@@ -1,3 +1,4 @@
+-- Colorscheme
 return {
     {
         'goolord/alpha-nvim',
