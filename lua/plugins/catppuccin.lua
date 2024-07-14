@@ -1,13 +1,7 @@
--- Colorscheme
 return {
-    {
-        'goolord/alpha-nvim',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-            'nvim-lua/plenary.nvim'
-        },
-        config = function()
-            require 'alpha'.setup(require 'alpha.themes.theta'.config)
-        end
-    },
+    "catppuccin/nvim",
+    priority = 1000,
+    init = function()
+        vim.cmd.colorscheme 'catppuccin-mocha'
+    end,
 }
