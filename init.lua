@@ -25,36 +25,12 @@ vim.opt.scrolloff = 10
 
 vim.opt_local.linebreak = true
 vim.opt_local.breakindent = true
-vim.opt_local.textwidth = 80
+vim.opt_local.textwidth = 120
 vim.opt_local.wrap = true
 
 
 require('keymaps')
 require('autocommands')
-
---  :help lua-guide-autocommands
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
--- Add this at the end of your configuration file or in a relevant section
-
--- Set textwidth to 80 for Markdown files
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'markdown',
-  callback = function()
-    vim.opt_local.textwidth = 50
-    vim.opt_local.wrap = true
-  end,
-})
 
 
 -- Lazyvim plugin manager
@@ -69,24 +45,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
-  -- This is often very useful to both group configuration, as well as handle
-  -- lazy loading plugins that don't need to be loaded immediately at startup.
-  --
-  -- For example, in the following configuration, we use:
-  --  event = 'VimEnter'
-  --
-  -- which loads which-key before all the UI elements are loaded. Events can be
-  -- normal autocommands events (`:help autocmd-events`).
-  --
-  -- Then, because we use the `config` key, the configuration only runs
-  -- after the plugin has been loaded:
-  --  config = function() ... end
-
-  { -- Useful plugin to show you pending keybinds.
+  {
     'folke/which-key.nvim',
     event = 'VimEnter',
     config = function()
@@ -100,18 +59,11 @@ require('lazy').setup({
         },
 
         ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>o'] = {
-          name = '[O]bsidian',
-          o = { ':ObsidianOpen<CR>', "open in obsidian" },
-        },
+        ['<leader>o'] = { name = '[O]bsidian' },
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>u'] = {
-          name = '[U] UI',
-          l = { ':colorscheme catppuccin-latte<CR>', '[L]ightmode' },
-          d = { ':colorscheme catppuccin-mocha<CR>', '[D]darkmode' },
-        },
+        ['<leader>u'] = { name = '[U] UI' },
 
         ['<leader>t'] = {
           name = '[T]oggle',
@@ -119,15 +71,13 @@ require('lazy').setup({
           w = { ':setlocal wrap!<CR>', '[T]oggle wrap' },
           s = { ':setlocal spell!<CR>', '[T]oggle spell check' },
           c = { ':setlocal cursorline!<CR>', '[T]oggle cursor line' },
-          g = { ':Telescope live_grep<CR>', '[T]oggle live grep' },                 -- assuming you're using Telescope
-          b = { ':Gitsigns toggle_current_line_blame<CR>', '[T]oggle line blame' }, -- assuming you're using Telescope
         },
         ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
       }
       -- visual mode
-      require('which-key').register({
-        ['<leader>h'] = { 'Git [H]unk' },
-      }, { mode = 'v' })
+      require('which-key').add({
+        { '<leader>h', desc = 'Git [H]unk', mode = "v" }
+      })
     end,
   },
 

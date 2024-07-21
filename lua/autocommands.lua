@@ -15,3 +15,21 @@ vim.api.nvim_create_autocmd({ "CmdlineLeave", "WinEnter" }, {
     vim.cmd([[ redraw ]])
   end,
 })
+
+-- highlight on yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
+
+-- Set wrap width for Markdown files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.opt_local.textwidth = 65
+    vim.opt_local.wrap = true
+  end,
+})
