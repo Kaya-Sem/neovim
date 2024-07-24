@@ -2,7 +2,22 @@ return {
     "catppuccin/nvim",
     priority = 1000,
     init = function()
-        vim.cmd.colorscheme 'catppuccin-latte'
+        -- set colorscheme based on the time of day
+        local function set_colorscheme()
+            local hour = tonumber(os.date("%H"))
+            if hour >= 18 or hour < 6 then
+                vim.cmd.colorscheme 'catppuccin-mocha'
+            else
+                vim.cmd.colorscheme 'catppuccin-latte'
+            end
+        end
+
+        set_colorscheme()
+
+        -- check and set the colorscheme periodically
+        vim.defer_fn(function()
+            set_colorscheme()
+        end, 60000) -- 60 seconds
 
         require("which-key").add({
             {
