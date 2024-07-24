@@ -14,11 +14,6 @@ return {
 
         set_colorscheme()
 
-        -- check and set the colorscheme periodically
-        vim.defer_fn(function()
-            set_colorscheme()
-        end, 60000) -- 60 seconds
-
         require("which-key").add({
             {
                 "<leader>ul",

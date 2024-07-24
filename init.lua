@@ -26,6 +26,11 @@ vim.opt_local.linebreak = true
 vim.opt_local.breakindent = true
 vim.opt_local.textwidth = 120
 vim.opt_local.wrap = true
+vim.cmd("set expandtab")
+vim.cmd("set tabstop=2")
+vim.cmd("set softtabstop=2")
+vim.cmd("set shiftwidth=2")
+vim.opt.swapfile = false
 
 
 require('keymaps')
@@ -98,7 +103,7 @@ require('lazy').setup({
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-      vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
+      vim.keymap.set('n', '<C-p>', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -141,7 +146,7 @@ require('lazy').setup({
 
       { 'j-hui/fidget.nvim',       opts = {} },
 
-      --  WARN: should be replaced with lazydev.nvim
+      --  WARN: should be replaced with lazydev.nvim?
       { 'folke/neodev.nvim',       opts = {} },
     },
     config = function()
