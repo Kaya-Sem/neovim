@@ -48,37 +48,21 @@ require('lazy').setup({
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
-    config = function()
-      require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = {
-          name = '[C]ode',
-          b = { ':Gitsigns blame_line<CR>', '[B]lame line' },
-        },
-
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>o'] = { name = '[O]bsidian' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>u'] = { name = '[U] UI' },
-
-        ['<leader>t'] = {
-          name = '[T]oggle',
-          t = { ':setlocal spell!<CR>', '[T]oggle spelling' },
-          w = { ':setlocal wrap!<CR>', '[T]oggle wrap' },
-          s = { ':setlocal spell!<CR>', '[T]oggle spell check' },
-          c = { ':setlocal cursorline!<CR>', '[T]oggle cursor line' },
-        },
-        ['<leader>h'] = { name = 'Git [H]unk', _ = 'which_key_ignore' },
-      }
-      -- visual mode
-      require('which-key').add({
-        { '<leader>h', desc = 'Git [H]unk', mode = "v" }
-      })
-    end,
+    keys = {
+      { "<leader>c",  group = "[C]ode" },
+      { '<leader>d',  group = "[Document]" },
+      { "<leader>o",  group = "[O]bsidian" },
+      { '<leader>r',  group = "[R]ename" },
+      { '<leader>s',  group = "[S]earch" },
+      { '<leader>w',  group = "[W]orkspace" },
+      { "<leader>u",  group = "[U]i" },
+      { "<leader>t",  group = "[T]oggle" },
+      { '<leader>h',  group = "Git [H]unk" },
+      { "<leader>tc", ':setlocal cursorline!<CR>', desc = "toggle cursor line" },
+      { "<leader>tt", ':setlocal spell!<CR>',      desc = "toggle spell check" },
+      { "<leader>tw", ':setlocal wrap!<CR>',       desc = "toggle wrap " },
+      { '<leader>h',  desc = 'Git [H]unk',         mode = "v" }
+    }
   },
 
   { -- Fuzzy Finder (files, lsp, etc)
