@@ -13,7 +13,7 @@ return {
             alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
             -- signs = false, -- configure signs for some keywords individually
           },
-          --  SMEL:
+
           TODO = { icon = " ", color = "info" },
           HACK = { icon = "", color = "warning" },
           SMEL = { icon = "", color = "info" },
