@@ -10,17 +10,20 @@ return {
           FIX = {
             icon = " ", -- icon used for the sign, and in search results
             color = "error", -- can be a hex color, or a named color (see below)
-            alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
+            alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "FMELLY", }, -- a set of other keywords that all map to this FIX keywords
             -- signs = false, -- configure signs for some keywords individually
           },
-
           TODO = { icon = " ", color = "info" },
           HACK = { icon = "", color = "warning" },
-          SMEL = { icon = "", color = "info" },
+          SMELLY = { icon = "", color = "smelly" },
+          BRAM = { icon = "b", color = "warning" }, -- BRAM:
           WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
           PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
           NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
           TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+          -- SMELLY:
+          -- todo:
+          -- TODO:
         },
         gui_style = {
           fg = "NONE",         -- The gui style to use for the fg highlight group.
@@ -51,7 +54,8 @@ return {
           info = { "DiagnosticInfo", "#2563EB" },
           hint = { "DiagnosticHint", "#10B981" },
           default = { "Identifier", "#7C3AED" },
-          test = { "Identifier", "#FF00FF" }
+          test = { "Identifier", "#FF00FF" },
+          smelly = { "Identifier", "#FF30FF" }
         },
         search = {
           command = "rg",
