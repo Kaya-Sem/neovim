@@ -46,6 +46,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  ui = {
+    border = "rounded",
+  },
 
   {
     'folke/which-key.nvim',

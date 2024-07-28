@@ -18,13 +18,14 @@ return {
         end,
 
         config = function()
-            require("silicon").setup({
+            require("nvim-silicon").setup({
                 font = "JetBrainsMono Nerd Font=34;Noto Color Emoji=34",
                 theme = "Dracula",
                 background = "#bdae93",
                 no_window_controls = true,
-                pad_horiz = 0,
-                pad_vert = 0,
+                pad_horiz = 30,
+                pad_vert = 30,
+                gobble = true,
                 to_clipboard = true,
                 num_separator = " ",
                 -- line_offset = function(args)
