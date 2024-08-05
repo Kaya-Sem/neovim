@@ -18,7 +18,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-vim.opt.inccommand = 'split' -- substitution live preview
+vim.opt.inccommand = 'nosplit' -- substitution live preview
 vim.opt.hlsearch = true
 vim.opt.scrolloff = 10
 
