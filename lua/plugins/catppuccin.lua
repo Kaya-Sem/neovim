@@ -5,7 +5,7 @@ return {
         -- set colorscheme based on the time of day
         local function set_colorscheme()
             local hour = tonumber(os.date("%H"))
-            if hour >= 18 or hour < 6 then
+            if hour >= 17 or hour < 6 then
                 vim.cmd.colorscheme 'catppuccin-mocha'
             else
                 vim.cmd.colorscheme 'catppuccin-latte'

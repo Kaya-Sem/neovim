@@ -33,3 +33,28 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.opt_local.wrap = true
   end,
 })
+
+-- automatically autodelim csv files
+vim.cmd([[
+  augroup CSVAutoCommand
+    autocmd!
+    autocmd BufEnter *.csv lua JumpToFirstDelimiterAndRainbow()
+  augroup END
+]])
+
+function JumpToFirstDelimiterAndRainbow()
+  -- Store the initial cursor position
+  local initial_pos = vim.fn.getpos('.')
+
+  -- Search for the first occurrence of ',' or ';'
+  vim.fn.search('[,;]', 'W')
+
+  -- Execute the RainbowDelim command
+  vim.cmd('RainbowDelim')
+
+  -- Reset cursor to the first character of the first line
+  vim.cmd('normal! gg0')
+
+  -- Restore the initial cursor position
+  vim.fn.setpos('.', initial_pos)
+end
