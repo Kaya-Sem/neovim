@@ -1,10 +1,10 @@
 return {
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
     priority = 1000,
     init = function()
         -- Extract TokyoNight themes to variables
-        local light_theme = 'tokyonight-day'
-        local dark_theme = 'tokyonight-night'
+        local light_theme = 'catppuccin-latte'
+        local dark_theme = 'catppuccin-mocha'
 
         -- Set colorscheme based on the time of day
         local function set_colorscheme()
