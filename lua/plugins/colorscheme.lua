@@ -9,7 +9,7 @@ return {
         -- Set colorscheme based on the time of day
         local function set_colorscheme()
             local hour = tonumber(os.date("%H"))
-            if hour >= 17 or hour < 6 then
+            if hour >= 15 or hour < 6 then
                 vim.cmd.colorscheme(dark_theme)
             else
                 vim.cmd.colorscheme(light_theme)
