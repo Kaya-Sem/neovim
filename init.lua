@@ -24,13 +24,16 @@ vim.opt.scrolloff = 10
 
 vim.opt_local.linebreak = true
 vim.opt_local.breakindent = true
-vim.opt_local.textwidth = 120
+vim.opt_local.textwidth = 300
 vim.opt_local.wrap = true
 vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.opt.swapfile = false
+
+-- stop vimtex from opening warning windows all the time
+vim.g.vimtex_quickfix_mode = 0
 
 
 require('keymaps')
@@ -139,6 +142,7 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
+
 
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -294,9 +298,6 @@ require('lazy').setup({
       indent = { enable = true, disable = { 'ruby' } },
     },
     config = function(_, opts)
-      -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-
-      -- Prefer git instead of curl in order to improve connectivity in some environments
       require('nvim-treesitter.install').prefer_git = true
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup(opts)

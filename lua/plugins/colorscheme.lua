@@ -1,5 +1,5 @@
 return {
-    "catppuccin/nvim",
+    "Kaya-Sem/ugent-theme",
     priority = 1000,
     init = function()
         -- Extract TokyoNight themes to variables
@@ -9,7 +9,7 @@ return {
         -- Set colorscheme based on the time of day
         local function set_colorscheme()
             local hour = tonumber(os.date("%H"))
-            if hour >= 15 or hour < 6 then
+            if hour >= 15 or hour < 9 then
                 vim.cmd.colorscheme(dark_theme)
             else
                 vim.cmd.colorscheme(light_theme)
