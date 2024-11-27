@@ -15,15 +15,11 @@ return {
           },
           TODO = { icon = " ", color = "info" },
           HACK = { icon = "", color = "warning" },
-          SMELLY = { icon = "", color = "smelly" },
-          BRAM = { icon = "b", color = "warning" }, -- BRAM:
           WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
           PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
           NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
           TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
           -- SMELLY:
-          -- todo:
-          -- TODO:
         },
         gui_style = {
           fg = "NONE",         -- The gui style to use for the fg highlight group.
@@ -46,6 +42,13 @@ return {
           max_line_len = 400,              -- ignore lines longer than this
           exclude = {},                    -- list of file types to exclude highlighting
         },
+
+        -- INFO:
+        -- BUG:
+        --  PERF:
+        --  NOTE:
+        --  TEST:
+        --
         -- list of named colors where we try to extract the guifg from the
         -- list of highlight groups or use the hex color if hl not found as a fallback
         colors = {
@@ -72,6 +75,25 @@ return {
         },
       }
 
-    }
+    },
+
+    config = function()
+      local smellyColor = "#644117"
+
+      -- wk.add({
+      --   mode = 'n',
+      --   { "<leader>t",  group = "Todo's..." },
+      --   { "<leader>td", "<CMD>TodoQuickFix<CR>",  desc = "QuickFix-list with all Todo's" },
+      --   { "<leader>tt", "<CMD>TodoTelescope<CR>", desc = "Telescope with all Todo's" },
+      -- })
+
+      require("todo-comments").setup({
+        keywords = {
+          ASK = { icon = "?", color = "hint", alt = { "QUESTION" } },
+          SMELLY = { icon = "💩", color = smellyColor, alt = { "QUESTION" } },
+          FREE = { icon = "‼", color = "test", alt = { "MALLOC" } },
+        },
+      })
+    end
   }
 }
