@@ -27,3 +27,9 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 
 --  NOTE: remap ctrl+o to leader+backspace
 vim.keymap.set("n", "<leader><BS>", "<C-o>", { desc = "Jump back in the jumplist" })
+
+--  NOTE:
+--
+--
+
+

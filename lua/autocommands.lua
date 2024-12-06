@@ -58,3 +58,34 @@ function JumpToFirstDelimiterAndRainbow()
   -- Restore the initial cursor position
   vim.fn.setpos('.', initial_pos)
 end
+
+local view_group = vim.api.nvim_create_augroup("auto_view", { clear = true })
+
+-- Save view with mkview for real files
+vim.api.nvim_create_autocmd({ "BufWinLeave", "BufWritePost", "WinLeave" }, {
+  desc = "Save view with mkview for real files",
+  group = view_group,
+  callback = function(args)
+    if vim.b[args.buf].view_activated then
+      pcall(vim.cmd, "mkview!")
+    end
+  end,
+})
+
+-- Load view if available and enable view saving for real files
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  desc = "Try to load file view if available and enable view saving for real files",
+  group = view_group,
+  callback = function(args)
+    if not vim.b[args.buf].view_activated then
+      local filetype = vim.bo[args.buf].filetype
+      local buftype = vim.bo[args.buf].buftype
+      local ignore_filetypes = { "gitcommit", "gitrebase", "svg", "hgcommit" }
+
+      if buftype == "" and filetype ~= "" and not vim.tbl_contains(ignore_filetypes, filetype) then
+        vim.b[args.buf].view_activated = true
+        pcall(vim.cmd, "silent! loadview")
+      end
+    end
+  end,
+})
