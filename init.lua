@@ -35,6 +35,8 @@ vim.opt.swapfile = false
 -- stop vimtex from opening warning windows all the time
 vim.g.vimtex_quickfix_mode = 0
 
+vim.opt.laststatus = 3 -- Only show 1 status-line regardless of window-count
+
 
 require('keymaps')
 require('autocommands')

@@ -89,3 +89,22 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end
   end,
 })
+
+vim.api.nvim_create_user_command("Pintop", function(opts)
+  opts = opts or {}
+  local line1 = opts.line1 or -1
+  local line2 = opts.line2 or -1
+
+  if line1 < 0 or line2 < 0 then
+    print("Invalid range, aborting.")
+    return
+  end
+
+  -- Split current buffer, and make top buffer only show the selection
+  --  vim.cmd.split()
+  vim.cmd("topleft split")
+  vim.opt_local.scrolloff = 0
+  vim.cmd.resize(line2 - line1 + 1)
+  vim.cmd("normal! " .. line2 .. "G")
+  vim.cmd.wincmd('j')
+end, { range = true })
