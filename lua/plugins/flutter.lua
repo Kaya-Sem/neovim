@@ -12,7 +12,7 @@ return {
         tel.load_extension("flutter")
 
         require("which-key").add({
-            { "<leader>cf", tel.extensions.flutter.commands, desc = "Search flutter commands" }
+            { "<leader>fc", tel.extensions.flutter.commands, desc = "Search flutter commands" }
 
 
         })

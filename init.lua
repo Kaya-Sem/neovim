@@ -306,7 +306,6 @@ require('lazy').setup({
     end,
   },
 
-  -- import all other plugins
   {
     import = 'plugins'
   },
