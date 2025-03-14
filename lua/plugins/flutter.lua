@@ -1,9 +1,20 @@
 return {
-    'nvim-flutter/flutter-tools.nvim',
+    "nvim-flutter/flutter-tools.nvim",
     lazy = false,
+
     dependencies = {
-        'nvim-lua/plenary.nvim',
-        'stevearc/dressing.nvim', -- optional for vim.ui.select
+        "nvim-lua/plenary.nvim",
     },
-    config = true,
+
+
+    config = function()
+        local tel = require("telescope")
+        tel.load_extension("flutter")
+
+        require("which-key").add({
+            { "<leader>cf", tel.extensions.flutter.commands, desc = "Search flutter commands" }
+
+
+        })
+    end,
 }
