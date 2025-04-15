@@ -4,7 +4,7 @@ return {
     init = function()
         -- Extract TokyoNight themes to variables
         local light_theme = 'catppuccin-latte'
-        local dark_theme = 'catppuccin-mocha'
+        local dark_theme = 'catppuccin-macchiato'
 
         -- Set colorscheme based on the time of day
         local function set_colorscheme()
