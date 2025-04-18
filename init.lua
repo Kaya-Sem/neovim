@@ -38,6 +38,11 @@ vim.g.vimtex_quickfix_mode = 0
 vim.opt.laststatus = 3 -- Only show 1 status-line regardless of window-count
 
 
+vim.o.hidden = true
+vim.keymap.set('n', 'H', ':bprev<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'L', ':bnext<CR>', { noremap = true, silent = true })
+
+
 require('keymaps')
 require('autocommands')
 

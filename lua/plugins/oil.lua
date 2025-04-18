@@ -5,6 +5,20 @@ return {
     opts = {
         default_file_explorer = true,
 
+        keymaps = {
+            ["gd"] = {
+                desc = "Toggle file detail view",
+                callback = function()
+                    detail = not detail
+                    if detail then
+                        require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+                    else
+                        require("oil").set_columns({ "icon" })
+                    end
+                end,
+            },
+        },
+
         delete_to_trash = true,
 
         float = {
@@ -18,7 +32,11 @@ return {
                 winblend = 0,
             },
             -- optionally override the oil buffers window title with custom function: fun(winid: integer): string
-            get_win_title = nil,
+
+            get_win_title = function()
+                return ""
+            end,
+
             -- preview_split: Split direction: "auto", "left", "right", "above", "below".
             preview_split = "auto",
             -- This is the config that will be passed to nvim_open_win.
@@ -28,14 +46,14 @@ return {
             end,
         },
 
-        require("which-key").register({
-            ["<leader>fo"] = {
-                function()
-                    vim.cmd("Oil --float")
-                end,
-                "Floating oil window"
+        require("which-key").add({
+            {
+                "<leader>fo",
+                ':Oil --float<CR>',
+                desc = "[O]il floating window",
+                mode = "n"
             },
-            -- your other keybindings...
+
         }),
 
         preview_win = {
@@ -45,7 +63,7 @@ return {
             preview_method = "fast_scratch",
             -- A function that returns true to disable preview on a file e.g. to avoid lag
             disable_preview = function(filename)
-                return false
+                return true
             end,
             -- Window-local options to use for preview window buffers
             win_options = {},
