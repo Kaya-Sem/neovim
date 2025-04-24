@@ -59,50 +59,6 @@ require('lazy').setup({
   },
 
   {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    keys = {
-      { "<leader>c",  group = "[C]ode" },
-      { '<leader>d',  group = "[Document]" },
-      { "<leader>o",  group = "[O]bsidian" },
-      { '<leader>r',  group = "[R]ename" },
-      { '<leader>s',  group = "[S]earch" },
-      { '<leader>w',  group = "[W]orkspace" },
-      { "<leader>u",  group = "[U]i" },
-      { "<leader>t",  group = "[T]oggle" },
-      { '<leader>h',  group = "Git [H]unk" },
-      { "<leader>tc", ':setlocal cursorline!<CR>', desc = "toggle cursor line" },
-      { "<leader>tt", ':setlocal spell!<CR>',      desc = "toggle spell check" },
-      { "<leader>tw", ':setlocal wrap!<CR>',       desc = "toggle wrap " },
-      { '<leader>h',  desc = 'Git [H]unk',         mode = "v" }
-    }
-  },
-
-
-
-
-
-  { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    opts = {
-      ensure_installed = { 'bash', 'html', 'javascript', 'json', 'markdown_inline', 'regex', 'yaml', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        disable = { "latex" }, -- let vimtex do it's own rendering. IMPORTANT!
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-    config = function(_, opts)
-      require('nvim-treesitter.install').prefer_git = true
-      ---@diagnostic disable-next-line: missing-fields
-      require('nvim-treesitter.configs').setup(opts)
-    end,
-  },
-
-  {
     import = 'plugins'
   },
 }
