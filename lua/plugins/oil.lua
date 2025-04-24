@@ -46,16 +46,6 @@ return {
             end,
         },
 
-        require("which-key").add({
-            {
-                "<leader>fo",
-                ':Oil --float<CR>',
-                desc = "[O]il floating window",
-                mode = "n"
-            },
-
-        }),
-
         preview_win = {
             -- Whether the preview window is automatically updated when the cursor is moved
             update_on_cursor_moved = true,
@@ -75,4 +65,10 @@ return {
     -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
     --
     lazy = false,
+    config = function()
+        require("oil").setup()
+        require("which-key").register({
+            ["<leader>fo"] = { ':Oil --float<CR>', "[O]il floating window" },
+        }, { mode = "n" })
+    end,
 }
