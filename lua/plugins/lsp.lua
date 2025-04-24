@@ -37,15 +37,34 @@ return {
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
+          -- Navigation
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-          map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
-          map('<leader>lds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-          map('<leader>lws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-          map('<leader>lrn', vim.lsp.buf.rename, '[R]e[n]ame')
-          map('<leader>lca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-          map('<leader>lK', vim.lsp.buf.hover, 'Hover Documentation')
+
+          -- Register which-key mappings
+          require("which-key").register({
+            l = {
+              name = "LSP",
+              D = { require('telescope.builtin').lsp_type_definitions, "Type [D]efinition" },
+              d = {
+                name = "Document",
+                s = { require('telescope.builtin').lsp_document_symbols, "[S]ymbols" },
+              },
+              r = {
+                name = "Refactor",
+                n = { vim.lsp.buf.rename, "[R]e[n]ame" },
+              },
+              a = { vim.lsp.buf.code_action, "[A]ction" },
+              K = { vim.lsp.buf.hover, "Hover Documentation" },
+              t = {
+                name = "Toggle",
+                h = { function()
+                  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+                end, "[H]ints" },
+              },
+            },
+          }, { prefix = "<leader>", buffer = event.buf })
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.server_capabilities.documentHighlightProvider then
@@ -69,12 +88,6 @@ return {
                 vim.api.nvim_clear_autocmds { group = 'kickstart-lsp-highlight', buffer = event2.buf }
               end,
             })
-          end
-
-          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-            end, '[T]oggle Inlay [H]ints')
           end
         end,
       })

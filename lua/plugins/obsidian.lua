@@ -9,13 +9,31 @@ return {
   },
 
   init = function()
-    require("which-key").add({
-      { "<leader>oo",   ':ObsidianOpen<CR>',        desc = "[O]pen in Obsidian", mode = "n" },
-      { "<leader>os",   ':ObsidianSearch<CR>',      desc = "[S]earch Obsidian",  mode = "n" },
-      { "<leader>oqs",  ':ObsidianQuickSwitch<CR>', desc = "[Q]uickswitch",      mode = "n" },
-      { "<leader><CR>", ':ObsidianFollowLink<CR>',  desc = "[E]nter Link",       mode = "n" },
-      { "<leader>ot",   ':ObsidianTOC<CR>',         desc = "[T]OC",              mode = "n" },
-    })
+    require("which-key").register({
+      o = {
+        name = "Obsidian",
+        o = { "<cmd>ObsidianOpen<CR>", "[O]pen in Obsidian" },
+        s = { "<cmd>ObsidianSearch<CR>", "[S]earch Obsidian" },
+        q = {
+          s = { "<cmd>ObsidianQuickSwitch<CR>", "[Q]uickswitch" },
+        },
+        t = { "<cmd>ObsidianTOC<CR>", "[T]OC" },
+        ["<CR>"] = { "<cmd>ObsidianFollowLink<CR>", "[E]nter Link" },
+      },
+      g = {
+        name = "Go to",
+        o = {
+          name = "Obsidian",
+          o = { "<cmd>ObsidianOpen<CR>", "[O]pen in Obsidian" },
+          s = { "<cmd>ObsidianSearch<CR>", "[S]earch Obsidian" },
+          q = {
+            s = { "<cmd>ObsidianQuickSwitch<CR>", "[Q]uickswitch" },
+          },
+          t = { "<cmd>ObsidianTOC<CR>", "[T]OC" },
+          ["<CR>"] = { "<cmd>ObsidianFollowLink<CR>", "[E]nter Link" },
+        },
+      },
+    }, { prefix = "<leader>" })
   end,
 
   opts = {
