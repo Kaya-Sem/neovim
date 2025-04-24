@@ -14,5 +14,6 @@ return {
             end,
             desc = "Buffer Local Keymaps (which-key)",
         },
+        { "<leader>f", group = "LSP" },
     },
 }
