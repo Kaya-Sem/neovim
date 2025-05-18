@@ -63,6 +63,12 @@ return {
                   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
                 end, "[H]ints" },
               },
+              e = {
+                name = "Errors",
+                s = { require('telescope.builtin').diagnostics, "[S]how with Telescope" },
+                n = { vim.diagnostic.goto_next, "[N]ext" },
+                p = { vim.diagnostic.goto_prev, "[P]revious" },
+              },
             },
           }, { prefix = "<leader>", buffer = event.buf })
 
