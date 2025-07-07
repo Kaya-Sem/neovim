@@ -31,5 +31,3 @@ vim.keymap.set("n", "<leader><BS>", "<C-o>", { desc = "Jump back in the jumplist
 --  NOTE:
 --
 --
-
-
