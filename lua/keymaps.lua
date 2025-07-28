@@ -31,3 +31,11 @@ vim.keymap.set("n", "<leader><BS>", "<C-o>", { desc = "Jump back in the jumplist
 --  NOTE:
 --
 --
+--
+--
+
+-- play m3u8 from neovim lol
+vim.keymap.set('n', '<F6>', function()
+  local line = vim.fn.getline('.')
+  vim.fn.jobstart({ 'mpv', line }, { detach = true })
+end, { noremap = true, silent = true })

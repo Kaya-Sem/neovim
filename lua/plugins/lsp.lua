@@ -37,6 +37,11 @@ return {
             vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
           end
 
+
+          map('lf', function()
+            vim.lsp.buf.format({ async = true })
+          end, 'Format Buffer')
+
           -- Navigation
           map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
           map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
