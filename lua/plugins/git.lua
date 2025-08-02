@@ -68,8 +68,6 @@ return {
       require("which-key").add({
         { "<leader>g",   group = "Git" },
         { "<leader>gh",  group = "Hunk" },
-        { "<leader>ghD", desc = "Diff against last commit" },
-        { "<leader>ghD", desc = "Diff against last commit" },
         --   { "<leader>gl",  function() Lazygit end,           desc = "Lazygit" },
         { "<leader>gb",  function() require('gitsigns').blame_line() end,                desc = "Blame line" },
 
