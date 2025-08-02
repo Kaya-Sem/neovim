@@ -48,34 +48,31 @@ return {
           map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
           -- Register which-key mappings
-          require("which-key").register({
-            l = {
-              name = "LSP",
-              D = { require('telescope.builtin').lsp_type_definitions, "Type [D]efinition" },
-              d = {
-                name = "Document",
-                s = { require('telescope.builtin').lsp_document_symbols, "[S]ymbols" },
-              },
-              r = {
-                name = "Refactor",
-                n = { vim.lsp.buf.rename, "[R]e[n]ame" },
-              },
-              a = { vim.lsp.buf.code_action, "[A]ction" },
-              K = { vim.lsp.buf.hover, "Hover Documentation" },
-              t = {
-                name = "Toggle",
-                h = { function()
-                  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-                end, "[H]ints" },
-              },
-              e = {
-                name = "Errors",
-                s = { require('telescope.builtin').diagnostics, "[S]how with Telescope" },
-                n = { vim.diagnostic.goto_next, "[N]ext" },
-                p = { vim.diagnostic.goto_prev, "[P]revious" },
-              },
+          require("which-key").add({
+
+            { "<leader>l",  buffer = 1,                                        group = "LSP" },
+            { "<leader>lD", require('telescope.builtin').lsp_type_definitions, desc = "Type [D]efinition" },
+            { "<leader>ls", require('telescope.builtin').lsp_document_symbols, desc = "[Symbols]" },
+            { "<leader>lr", vim.lsp.buf.rename,                                desc = "Rename" },
+            { "<leader>la", vim.lsp.buf.code_action,                           desc = "[A]ction" },
+            { "<leader>lK", vim.lsp.buf.hover,                                 desc = "Hover Documentation" },
+            {
+              "<leader>lh",
+              function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+              end,
+              desc = "Toggle type hints"
             },
-          }, { prefix = "<leader>", buffer = event.buf })
+
+            -- Errors
+            { "<leader>le",  group = "Errors" },
+            { "<leader>les", require('telescope.builtin').diagnostics, desc = "[S]how with telescope" },
+            { "<leader>len", vim.diagnostic.goto_next,                 desc = "Next" },
+            { "<leader>lep", vim.diagnostic.goto_prev,                 desc = "Previous" },
+
+
+
+          })
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client.server_capabilities.documentHighlightProvider then
