@@ -30,6 +30,11 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 vim.opt.swapfile = false
 
+
+vim.diagnostic.config({
+  float = { focusable = false } -- prevents focus stealing
+})
+
 -- stop vimtex from opening warning windows all the time
 vim.g.vimtex_quickfix_mode = 0
 

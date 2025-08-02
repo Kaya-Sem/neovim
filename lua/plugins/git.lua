@@ -60,47 +60,44 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
-    keys = {
-      { "<leader>gl", "<cmd>LazyGit<cr>", desc = "LazyGit" }
-    },
+
   },
   {
     "folke/which-key.nvim",
     config = function()
-      require("which-key").register({
-        g = {
-          name = "Git",
-          l = { "<cmd>LazyGit<cr>", "LazyGit" },
-          h = {
-            name = "Hunk",
-            s = { function() require('gitsigns').stage_hunk() end, "Stage hunk" },
-            r = { function() require('gitsigns').reset_hunk() end, "Reset hunk" },
-            S = { function() require('gitsigns').stage_buffer() end, "Stage buffer" },
-            u = { function() require('gitsigns').undo_stage_hunk() end, "Undo stage hunk" },
-            R = { function() require('gitsigns').reset_buffer() end, "Reset buffer" },
-            p = { function() require('gitsigns').preview_hunk() end, "Preview hunk" },
-            b = { function() require('gitsigns').blame_line() end, "Blame line" },
-            d = { function() require('gitsigns').diffthis() end, "Diff against index" },
-            D = { function() require('gitsigns').diffthis('@') end, "Diff against last commit" },
-          },
-          t = {
-            name = "Toggle",
-            b = { function() require('gitsigns').toggle_current_line_blame() end, "Toggle blame line" },
-            D = { function() require('gitsigns').toggle_deleted() end, "Toggle show deleted" },
-          },
-        },
-      }, { prefix = "<leader>" })
+      require("which-key").add({
+        { "<leader>g",   group = "Git" },
+        { "<leader>gh",  group = "Hunk" },
+        { "<leader>ghD", desc = "Diff against last commit" },
+        { "<leader>ghD", desc = "Diff against last commit" },
+        --   { "<leader>gl",  function() Lazygit end,           desc = "Lazygit" },
+        { "<leader>gb",  function() require('gitsigns').blame_line() end,                desc = "Blame line" },
 
-      -- Visual mode mappings
-      require("which-key").register({
-        g = {
-          h = {
-            name = "Hunk",
-            s = { function() require('gitsigns').stage_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, "Stage hunk" },
-            r = { function() require('gitsigns').reset_hunk({vim.fn.line('.'), vim.fn.line('v')}) end, "Reset hunk" },
-          },
+        -- Git Toggle
+        { "<leader>gt",  group = "Toggle" },
+        { "<leader>gtD", function() require('gitsigns').toggle_deleted() end,            desc = "Toggle show deleted" },
+        { "<leader>gtb", function() require('gitsigns').toggle_current_line_blame() end, desc = "Toggle blame line" },
+
+
+        -- Git hunk
+        { "<leader>ghS", function() require('gitsigns').stage_buffer() end,              desc = "Stage buffer" },
+        { "<leader>ghu", function() require('gitsigns').undo_stage_hunk() end,           desc = "Undo stage hunk" },
+        { "<leader>ghR", function() require('gitsigns').reset_buffer() end,              desc = "Reset buffer" },
+        { "<leader>ghp", function() require('gitsigns').preview_hunk() end,              desc = "Preview hunk" },
+        { "<leader>ghd", function() require('gitsigns').diffthis() end,                  desc = "Diff against index" },
+        { "<leader>ghD", function() require('gitsigns').diffthis('@') end,               desc = "Diff against last commit" },
+
+
+        {
+          mode = { "v" },
+          { "<leader>ghs", function() require('gitsigns').stage_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, desc = "Stage hunk" },
+
+          { "<leader>ghr", function() require('gitsigns').reset_hunk({ vim.fn.line('.'), vim.fn.line('v') }) end, desc = "Reset hunk" }
+
+
         },
-      }, { prefix = "<leader>", mode = "v" })
+
+      })
     end,
   },
-} 
+}

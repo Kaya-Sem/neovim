@@ -67,7 +67,8 @@ return {
     lazy = false,
     config = function()
         require("oil").setup()
-        require("which-key").register({ "<leader>fo", ":Oil --float<CR>", desc = "[O]il floating window" },
-            { mode = "n" })
+        require("which-key").add({
+            { "<leader>fo", ":Oil --float<CR>", desc = "[O]il floating window", mode = "n" }
+        })
     end,
 }
