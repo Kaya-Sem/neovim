@@ -68,7 +68,7 @@ return {
       require("which-key").add({
         { "<leader>g",   group = "Git" },
         { "<leader>gh",  group = "Hunk" },
-        --   { "<leader>gl",  function() Lazygit end,           desc = "Lazygit" },
+        { "<leader>gl",  function() vim.cmd('LazyGit') end,           desc = "Lazygit" },
         { "<leader>gb",  function() require('gitsigns').blame_line() end,                desc = "Blame line" },
 
         -- Git Toggle
