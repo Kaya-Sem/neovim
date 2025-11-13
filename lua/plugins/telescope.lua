@@ -23,6 +23,20 @@ return { -- Fuzzy Finder (files, lsp, etc)
                 layout_config = {
                     width = 0.9,
                 },
+                file_ignore_patterns = {
+                    -- Only ignore common build/cache directories, not gitignored files
+                    '%.git/',
+                    'node_modules/',
+                    '%.o',
+                    '%.so',
+                },
+            },
+            pickers = {
+                find_files = {
+                    find_command = vim.fn.executable('fd') == 1
+                        and { 'fd', '--type', 'f', '--hidden', '--no-ignore' }
+                        or nil, -- fallback to default if fd not available
+                },
             },
             extensions = {
                 ['ui-select'] = {
