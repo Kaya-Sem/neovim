@@ -25,9 +25,8 @@ return {
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      { 'j-hui/fidget.nvim',       opts = {} },
-      --  WARN: should be replaced with lazydev.nvim?
-      { 'folke/neodev.nvim',       opts = {} },
+      { 'j-hui/fidget.nvim',      opts = {} },
+      { 'folke/lazydev.nvim',     ft = 'lua', opts = {} },
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -50,7 +49,7 @@ return {
           -- Register which-key mappings
           require("which-key").add({
 
-            { "<leader>l",  buffer = 1,                                        group = "LSP" },
+            { "<leader>l",  buffer = event.buf,                                    group = "LSP" },
             { "<leader>lD", require('telescope.builtin').lsp_type_definitions, desc = "Type [D]efinition" },
             { "<leader>ls", require('telescope.builtin').lsp_document_symbols, desc = "[Symbols]" },
             { "<leader>lr", vim.lsp.buf.rename,                                desc = "Rename" },
@@ -133,10 +132,6 @@ return {
         },
       }
     end,
-  },
-
-  {
-    import = 'plugins'
   },
 
 }

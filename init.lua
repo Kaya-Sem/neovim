@@ -20,14 +20,14 @@ vim.opt.inccommand = 'nosplit' -- substitution live preview [split, "", nosplit]
 vim.opt.hlsearch = true
 vim.opt.scrolloff = 2
 
-vim.opt_local.linebreak = true
-vim.opt_local.breakindent = true
-vim.opt_local.textwidth = 300
-vim.opt_local.wrap = true
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
+vim.opt.linebreak = true
+vim.opt.textwidth = 300
+vim.opt.wrap = true
+
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 vim.opt.swapfile = false
 
 
@@ -41,22 +41,9 @@ vim.g.vimtex_quickfix_mode = 0
 vim.opt.laststatus = 3 -- Only show 1 status-line regardless of window-count
 
 
-vim.o.hidden = true
-vim.keymap.set('n', 'H', ':bprev<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', 'L', ':bnext<CR>', { noremap = true, silent = true })
-
-
--- Normal mode: move current line up/down
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
-
--- Visual mode: move selected lines up/down
-vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-
-
 require('keymaps')
 require('autocommands')
+require('commands')
 
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'

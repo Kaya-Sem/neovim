@@ -15,11 +15,9 @@ vim.keymap.set('n', '<down>', '<cmd><CR>')
 -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 -- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
---
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
 
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
@@ -28,14 +26,19 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  NOTE: remap ctrl+o to leader+backspace
 vim.keymap.set("n", "<leader><BS>", "<C-o>", { desc = "Jump back in the jumplist" })
 
---  NOTE:
---
---
---
---
-
 -- play m3u8 from neovim lol
 vim.keymap.set('n', '<F6>', function()
   local line = vim.fn.getline('.')
   vim.fn.jobstart({ 'mpv', line }, { detach = true })
 end, { noremap = true, silent = true })
+
+vim.keymap.set('n', 'H', ':bprev<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', 'L', ':bnext<CR>', { noremap = true, silent = true })
+
+-- Normal mode: move current line up/down
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { noremap = true, silent = true })
+
+-- Visual mode: move selected lines up/down
+vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
