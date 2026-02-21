@@ -55,7 +55,6 @@ vim.keymap.set("x", "<A-k>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true
 vim.keymap.set("x", "<A-j>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 
-
 require('keymaps')
 require('autocommands')
 
